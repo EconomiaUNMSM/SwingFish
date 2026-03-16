@@ -1,0 +1,50 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* Deep Water Color Palette */
+  --color-abyssal: #081018; /* Main Background */
+  --color-panel: #11202D;   /* Darker panels */
+  --color-panel-light: #172A3A; /* Lighter panels / hovers */
+  
+  /* Accent Colors (Bioluminescence) */
+  --color-success: #00FFA3; /* Bullish / Success */
+  --color-danger: #FF4D4D;  /* Bearish / Danger */
+  --color-accent: #00C2FF;  /* Neutral / Focus / Primary Action */
+  
+  /* Text */
+  --color-primary-text: #E1E7ED;
+  --color-muted-text: #8B9DAE;
+  
+  /* Fonts mapped from CSS variables (set in layout) */
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+:root {
+  --background: var(--color-abyssal);
+  --foreground: var(--color-primary-text);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Base resets & aesthetics */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-abyssal);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-panel-light);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
