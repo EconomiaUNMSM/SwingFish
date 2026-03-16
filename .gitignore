@@ -1,0 +1,15 @@
+.env 
+venv/ 
+__pycache__/ 
+node_modules/ 
+.next/ 
+.DS_Store 
+.env 
+venv/ 
+__pycache__/ 
+node_modules/ 
+.next/ 
+.DS_Store 
+backend/multiagent_analysis/reports/ 
+backend/Filter_sp500/reports/* 
+!backend/Filter_sp500/reports/fundamentals_scan_20260316_103416.csv 

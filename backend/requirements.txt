@@ -1,0 +1,31 @@
+# --- Backend Dependencies ---
+# Datos y Análisis
+pandas
+numpy
+yahooquery 
+yfinance
+matplotlib
+mplfinance
+plotly
+
+# Automatización y Conexión al Cánido(Broker)
+MetaTrader5
+pytz
+
+# Framework Financiero 
+backtrader
+
+# Scraping e Interacciones Web
+requests
+lxml
+html5lib
+bs4 
+fake_useragent 
+
+# Servidores / API (En caso se lance backend de servicio, usualmente usado en SwingFish)
+fastapi
+uvicorn
+
+# Modelos
+transformers 
+torch 
