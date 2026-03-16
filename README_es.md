@@ -41,6 +41,56 @@ Esta terminal está estrictamente optimizada para **Acciones de Empresas Individ
 6.  **Modelos Cuantitativos Avanzados**: Integración de estrategias de ML y Deep Learning pre-backtesteadas.
 7.  **Ponderación Dinámica**: Configuración personalizada de los pesos para el sistema de puntuación del S&P 500.
 
+## 🚀 Guía de Inicio Rápido
+
+### Requisitos Previos
+- **Python 3.10+**
+- **Node.js 18+**
+- **Git**
+
+### 1. Configuración del Backend
+Desde la raíz del proyecto:
+```bash
+cd backend
+# Crear entorno virtual
+python -m venv venv
+# Activar entorno virtual (Windows)
+venv\Scripts\activate
+# Instalar dependencias
+pip install -r requirements.txt
+# Iniciar servidor (API operando en http://localhost:8000)
+uvicorn api.main:app --reload
+```
+
+### 2. Configuración del Frontend
+Desde la raíz del proyecto:
+```bash
+cd frontend
+# Instalar dependencias
+npm install
+# Iniciar modo desarrollo (App operando en http://localhost:3000)
+npm run dev
+```
+
+## 🔄 Comandos para Actualizar el Repositorio
+Para mantener tu terminal siempre al día con las últimas mejoras:
+```bash
+# 1. Bajar los últimos cambios
+git pull origin main
+
+# 2. Actualizar dependencias del Backend
+cd backend
+# (Asegúrate de tener el venv activado)
+pip install -r requirements.txt
+cd ..
+
+# 3. Actualizar dependencias del Frontend
+cd frontend
+npm install
+cd ..
+```
+
+
 ## 👨‍💻 Autor
 **Luis Fabio Yoplac Cortez**
 - [GitHub](https://github.com/EconomiaUNMSM)

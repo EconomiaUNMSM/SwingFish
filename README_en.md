@@ -41,6 +41,56 @@ This terminal is strictly optimized for **Individual Equities (Stocks)**, specif
 6.  **Advanced Quant Models**: Integration of pre-backtested ML and Deep Learning strategies.
 7.  **Dynamic Weighting**: Custom configuration of weights for the S&P 500 scoring system.
 
+## 🚀 Quick Start Guide
+
+### Prerequisites
+- **Python 3.10+**
+- **Node.js 18+**
+- **Git**
+
+### 1. Backend Setup
+From the project root:
+```bash
+cd backend
+# Create virtual environment
+python -m venv venv
+# Activate virtual environment (Windows)
+venv\Scripts\activate
+# Install dependencies
+pip install -r requirements.txt
+# Start server (API running on http://localhost:8000)
+uvicorn api.main:app --reload
+```
+
+### 2. Frontend Setup
+From the project root:
+```bash
+cd frontend
+# Install dependencies
+npm install
+# Start development mode (App running on http://localhost:3000)
+npm run dev
+```
+
+## 🔄 Repository Update Commands
+To keep your terminal always up-to-date with the latest improvements:
+```bash
+# 1. Pull latest changes
+git pull origin main
+
+# 2. Update Backend dependencies
+cd backend
+# (Ensure venv is activated)
+pip install -r requirements.txt
+cd ..
+
+# 3. Update Frontend dependencies
+cd frontend
+npm install
+cd ..
+```
+
+
 ## 👨‍💻 Author
 **Luis Fabio Yoplac Cortez**
 - [GitHub](https://github.com/EconomiaUNMSM)

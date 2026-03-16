@@ -41,6 +41,56 @@
 6.  **高级量化模型**：集成经过回测的机器学习和深度学习策略。
 7.  **动态权重**：自定义标普 500 评分系统的权重配置。
 
+## 🚀 快速入门指南
+
+### 必要条件
+- **Python 3.10+**
+- **Node.js 18+**
+- **Git**
+
+### 1. 后端设置
+在项目根目录下：
+```bash
+cd backend
+# 创建虚拟环境
+python -m venv venv
+# 激活虚拟环境 (Windows)
+venv\Scripts\activate
+# 安装依赖
+pip install -r requirements.txt
+# 启动服务器 (API 运行在 http://localhost:8000)
+uvicorn api.main:app --reload
+```
+
+### 2. 前端设置
+在项目根目录下：
+```bash
+cd frontend
+# 安装依赖
+npm install
+# 启动开发模式 (应用运行在 http://localhost:3000)
+npm run dev
+```
+
+## 🔄 仓库更新命令
+让你的终端始终保持最新：
+```bash
+# 1. 拉取最新更改
+git pull origin main
+
+# 2. 更新后端依赖
+cd backend
+# (确保虚拟环境已激活)
+pip install -r requirements.txt
+cd ..
+
+# 3. 更新前端依赖
+cd frontend
+npm install
+cd ..
+```
+
+
 ## 👨‍💻 作者
 **Luis Fabio Yoplac Cortez**
 - [GitHub](https://github.com/EconomiaUNMSM)
