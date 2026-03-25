@@ -13,12 +13,12 @@ from pdf_generator import ReportGenerator, AuditReportGenerator
 REPORTS_DIR = os.path.join(current_dir, "reports")
 os.makedirs(REPORTS_DIR, exist_ok=True)
 
-def run_multiagent_analysis(ticker: str):
-    print(f"\n[+] Iniciando Escuadrón de Análisis para: {ticker}")
+def run_multiagent_analysis(ticker: str, language: str = "es"):
+    print(f"\n[+] Iniciando Escuadrón de Análisis para: {ticker} (Idioma: {language})")
     print("[+] Compilando Grafo de LangGraph...")
     
     app = build_multiagent_graph()
-    initial_state = {"ticker": ticker}
+    initial_state = {"ticker": ticker, "language": language}
     
     print("[+] Fase 1: DataFetcher extrayendo datos financieros (secuencial)...")
     print("[+] Fase 2: Analistas LLM interpretando datos (paralelo)...")
@@ -63,6 +63,7 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Multiagent Analysis para Swing Trading.")
     parser.add_argument("ticker", type=str, help="El Ticker o Símbolo a analizar (Ej. AAPL, NVDA).")
+    parser.add_argument("--lang", type=str, default="es", choices=["en", "es", "pt", "zh"], help="Idioma del reporte.")
     args = parser.parse_args()
     
-    run_multiagent_analysis(args.ticker)
+    run_multiagent_analysis(args.ticker, args.lang)

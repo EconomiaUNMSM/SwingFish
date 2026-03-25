@@ -235,7 +235,7 @@ class FundamentalsEngine:
 
         df = pd.DataFrame(results)
         if not df.empty:
-            df = df.sort_values(by="final_score", ascending=False)
+            df = df.sort_values(by="Final_Score", ascending=False)
             
             # Guardar reporte
             now = pd.Timestamp.now()

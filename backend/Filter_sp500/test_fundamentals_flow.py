@@ -11,7 +11,7 @@ from pathlib import Path
 # Agregar raíz al path para imports
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from backend.MODULO_FUNDAMENTALES.engine import FundamentalsEngine
+from backend.Filter_sp500.engine import FundamentalsEngine
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -60,7 +60,7 @@ def main():
         print("="*60)
         
         # Columnas clave para mostrar
-        cols = ["ticker", "final_score", "recommendation", "growth_score", "upside", "risk_flags"]
+        cols = ["Ticker", "Final_Score", "Recommendation", "Growth_Score", "Upside_Pct", "Risk_Flags"]
         print(df_results[cols].head(10).to_string(index=False))
         
         print("\n" + "="*60)

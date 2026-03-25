@@ -10,7 +10,7 @@ def get_technical_indicators(ticker: str) -> str:
     Nubes de Ichimoku, Índice Ulcer, SMAs (20, 50, 200), RSI, y RVI (Índice de Volatilidad Relativa).
     """
     try:
-        data = yf.download(ticker, period="2y", progress=False, multi_level_index=False)
+        data = yf.download(ticker, period="max", progress=False, multi_level_index=False)
         if data.empty:
             return f"No se encontraron datos para el ticker {ticker}."
 

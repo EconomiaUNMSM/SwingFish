@@ -69,40 +69,63 @@ def get_macro_environment() -> str:
 @tool
 def get_upcoming_economic_events() -> str:
     """
-    Extrae los eventos de alto impacto de la semana actual desde el calendario de Forex Factory (XML feed gratuito).
-    Permite al analista macro considerar riesgos por datos próximos a publicarse.
+    Extrae los eventos de alto impacto desde el calendario de Forex Factory.
+    Filtra eventos del pasado y consolida la semana actual y la próxima.
     """
+    from datetime import datetime
     try:
-        url = "https://nfs.faireconomy.media/ff_calendar_thisweek.xml"
+        urls = [
+            "https://nfs.faireconomy.media/ff_calendar_thisweek.xml",
+            "https://nfs.faireconomy.media/ff_calendar_nextweek.xml"
+        ]
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
-        response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()
         
-        root = ET.fromstring(response.content)
         eventos_high = []
+        hoy = datetime.now().date()
         
-        for event in root.findall('event'):
-            impact_node = event.find('impact')
-            impact = impact_node.text.strip().lower() if impact_node is not None and impact_node.text else ""
-            
-            if impact == 'high':
-                def get_text(tag):
-                    n = event.find(tag)
-                    return n.text.strip() if n is not None and n.text else ""
+        for url in urls:
+            try:
+                response = requests.get(url, headers=headers, timeout=10)
+                response.raise_for_status()
+                root = ET.fromstring(response.content)
                 
-                eventos_high.append({
-                    "fecha": get_text('date'),
-                    "hora": get_text('time'),
-                    "moneda": get_text('country'),
-                    "evento": get_text('title'),
-                    "esperado": get_text('forecast'),
-                    "previo": get_text('previous')
-                })
+                for event in root.findall('event'):
+                    impact_node = event.find('impact')
+                    impact = impact_node.text.strip().lower() if impact_node is not None and impact_node.text else ""
+                    
+                    if impact == 'high':
+                        def get_text(tag):
+                            n = event.find(tag)
+                            return n.text.strip() if n is not None and n.text else ""
+                        
+                        date_str = get_text('date')
+                        date_obj = hoy
+                        try:
+                            date_obj = datetime.strptime(date_str, "%m-%d-%Y").date()
+                            if date_obj < hoy:
+                                continue  # Ignoramos eventos de días pasados
+                        except Exception:
+                            pass
+                            
+                        eventos_high.append({
+                            "fecha": date_str,
+                            "hora": get_text('time'),
+                            "moneda": get_text('country'),
+                            "evento": get_text('title'),
+                            "esperado": get_text('forecast'),
+                            "previo": get_text('previous'),
+                            "date_obj": date_obj
+                        })
+            except Exception:
+                continue
         
         if not eventos_high:
-            return "No hay eventos de alto impacto programados esta semana."
+            return "No hay eventos futuros de alto impacto programados para los próximos días."
             
-        reporte = "EVENTOS DE ALTO IMPACTO ESTA SEMANA:\n"
+        # Ordenamos la lista cronológicamente
+        eventos_high.sort(key=lambda x: x['date_obj'])
+            
+        reporte = "PRÓXIMOS EVENTOS DE ALTO IMPACTO (A partir de hoy):\n"
         for ev in eventos_high:
             reporte += f"- [{ev['fecha']} {ev['hora']}] {ev['moneda']}: {ev['evento']} | Esperado: {ev['esperado']} | Previo: {ev['previo']}\n"
         return reporte

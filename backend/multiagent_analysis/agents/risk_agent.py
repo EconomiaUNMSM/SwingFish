@@ -25,7 +25,7 @@ def get_risk_metrics(ticker: str) -> str:
     - Estacionalidad (retorno promedio mensual).
     """
     try:
-        close = yf.download(ticker, start="2018-01-01", progress=False, multi_level_index=False)['Close']
+        close = yf.download(ticker, period="max", progress=False, multi_level_index=False)['Close']
         if close.empty:
             return f"No hay datos históricos suficientes para evaluar riesgo de {ticker}."
             
